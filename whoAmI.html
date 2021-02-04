@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Am I</title>
+</head>
+
+<body>
+    <h1 id="user-name"></h1>
+    <h5 id="address"></h5>
+
+    <script>
+        fetch('https://randomuser.me/api/')
+            .then(response => response.json())
+            .then(data => {
+                const user = data.results[0];
+                const name = user.name;
+                const userName = `${name.title} ${name.first} ${name.last}`;
+                document.getElementById('user-name').innerText = userName;
+
+                const address = user.location;
+                const fullAddress = `Street Name: ${address.street.name} 
+                City: ${address.city} 
+                State: ${address.state}`;
+                document.getElementById('address').innerText = fullAddress;
+            })
+    </script>
+</body>
+
+</html>
